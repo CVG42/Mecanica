@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 116464749}
   - component: {fileID: 116464748}
   - component: {fileID: 116464747}
+  - component: {fileID: 116464752}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116464746}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d333fd90339902244850c67f83d13c5e, type: 3}
   m_Name: 
@@ -244,6 +245,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &116464752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116464746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c715b046d05fd3e4885fd724ab5dbf88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forces:
+  - {x: 1, y: 2, z: 3}
+  - {x: -1, y: -2, z: -3}
+  acceleration: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &251200755
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &251200756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251200755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd39158d5dfc054498b1177841976e15, type: 3}
   m_Name: 
