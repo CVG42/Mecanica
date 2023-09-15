@@ -5,15 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Acceleration))]
 public class Empuje : MonoBehaviour
 {
-	public float masaCombustible;             
-	private float empujeActual;       
-	public float empujeMaximo;             
-	public Vector3 empujeVector;    
+	private Acceleration acceleration;
 
 	[Range(0, 1f)]
-	public float porcentaje;         
-
-	private Acceleration acceleration;
+	public float porcentaje;    
+	
+	public float masaCombustible;             
+	private float propulsionActual;       
+	public float propulsionMaxima;             
+	public Vector3 vectorUnidadProp;
 
 	void Start()
 	{
@@ -23,28 +23,21 @@ public class Empuje : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (masaCombustible > Combustible())
-		{
-			masaCombustible -= Combustible();
-			acceleration.masa -= Combustible();
-			//ExertForce();
-		}
-	}
-
-	float Combustible()
-	{                           
 		float flujoDeMasa;                          
 		float velocidadDeEmpuje;                  
 
 		velocidadDeEmpuje = 4462f;               
-		flujoDeMasa = empujeActual / velocidadDeEmpuje;
+		flujoDeMasa = propulsionActual / velocidadDeEmpuje;
+		flujoDeMasa *= Time.deltaTime;
 
-		return flujoDeMasa * Time.deltaTime;
+		if (masaCombustible > flujoDeMasa)
+		{
+			masaCombustible -= flujoDeMasa;
+			acceleration.masa -= flujoDeMasa;
+			propulsionActual = propulsionMaxima * porcentaje * 1000f;
+			Vector3 empuje = vectorUnidadProp.normalized * propulsionActual;
+			acceleration.AddForce(empuje);
+
+		}
 	}
-	/*
-	void ExertForce()
-	{
-		empujeActual = porcentaje * empujeMaximo * 1000f;
-		Vector3 thrustVector = empujeVector.normalized * empujeActual;
-	}*/
 }
