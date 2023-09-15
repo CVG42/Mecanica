@@ -157,9 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d333fd90339902244850c67f83d13c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vectores: {x: 0, y: 0, z: 0}
-  velocidad: {x: 0, y: 0, z: 0}
-  speed: 5
+  velocidad: {x: 1, y: 1, z: 2}
 --- !u!135 &116464748
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -331,7 +329,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.6179246, g: 0.8191954, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -356,7 +354,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
