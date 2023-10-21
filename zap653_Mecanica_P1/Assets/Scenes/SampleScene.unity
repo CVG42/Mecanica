@@ -378,9 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e088052d5f1b5d4daf5fc22a89a444f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porcentaje: 0.447
+  porcentaje: 0.821
   masaCombustible: 5000
-  propulsionMaxima: 7000
+  propulsionMaxima: 4500
   vectorUnidadProp: {x: 0, y: 1, z: 0}
 --- !u!1 &251200755
 GameObject:
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   esfera: {fileID: 116464751}
   offset: {x: 0, y: 2, z: -10}
-  canFollow: 0
+  canFollow: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

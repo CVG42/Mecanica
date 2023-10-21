@@ -11,11 +11,15 @@ public class Acceleration : MonoBehaviour
     public LineRenderer lineRenderer;
     public bool showTrails;
 
+    private Acceleration[] physicsEngineArray;
+    private const float bigG = 6.673e-11f;
+
     private List<Vector3> forcelist = new List<Vector3>();
 
     void Start()
     {
         lineRenderer.useWorldSpace = false;
+        physicsEngineArray = GameObject.FindObjectsOfType<Acceleration>();
     }
 
     public void AddForce(Vector3 forceVector)
@@ -25,6 +29,7 @@ public class Acceleration : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CalculateGravity();
         fuerzaResultante = Vector3.zero;
         foreach (Vector3 forcevector in forcelist)
         {
@@ -40,10 +45,30 @@ public class Acceleration : MonoBehaviour
         }*/
 
         lineRenderer.enabled = showTrails ? true : false;
-        lineRenderer.SetPosition(0,-fuerzaResultante);
+        lineRenderer.SetPosition(0, -fuerzaResultante);
 
         Vector3 aceleracion = fuerzaResultante / masa;
         velocidad += aceleracion * Time.deltaTime;
         transform.position += velocidad * Time.deltaTime;
+    }
+
+    void CalculateGravity()
+    {
+        foreach (Acceleration physicsEngineA in physicsEngineArray)
+        {
+            foreach (Acceleration physicsEngineB in physicsEngineArray)
+            {
+                if (physicsEngineA != physicsEngineB && physicsEngineA != this)
+                {
+                    Vector3 offset = physicsEngineA.transform.position - physicsEngineB.transform.position;
+                    float rSquared = Mathf.Pow(offset.magnitude, 2f);
+                    float gravityMagnitude = bigG * physicsEngineA.masa * physicsEngineB.masa / rSquared;
+                    Vector3 gravityFeltVector = gravityMagnitude * offset.normalized;
+
+                    physicsEngineA.AddForce(-gravityFeltVector);
+                }
+
+            }
+        }
     }
 }
