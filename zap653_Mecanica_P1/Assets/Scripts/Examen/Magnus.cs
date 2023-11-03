@@ -15,7 +15,8 @@ public class Magnus : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.AddForce(CalculateMagnusForce() * Time.fixedDeltaTime);
+        Ray mouse = Camera.main.ScreenPointToRay(Input.mousePosition);
+        _rigidbody.AddForce(CalculateMagnusForce() * mouse.direction.magnitude * Time.fixedDeltaTime);
     }
 
     public Vector3 CalculateMagnusForce()

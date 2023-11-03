@@ -8,16 +8,44 @@ public class Kick : MonoBehaviour
 
 	private float extraSpeedPerFrame;
 
-	// Use this for initialization
+	public Transform ballPos;
+	public Transform startP;
+	public Transform endP;
+	public float speed;
+
+	int direction = 1;
 	void Start()
 	{
 		extraSpeedPerFrame = (ball.maxCoefficient * Time.fixedDeltaTime);
 	}
 
+
+	void Update()
+	{
+		Vector3 target = movement();
+		ballPos.position = Vector3.Lerp(ballPos.position, target, speed * Time.deltaTime);
+		float distance = (target - (Vector3)ballPos.position).magnitude;
+		if (distance <=.1f)
+        {
+			direction *= -1;
+        }
+
+	}
+
+	Vector3 movement()
+    {
+		if(direction == 1)
+		{ 
+			return startP.position;
+		}
+        else
+        {
+			return endP.position;
+        }
+    }
+
 	void OnMouseDown()
 	{
-		// Increase ball speed to max over a few seconds
-		// Consdider InvokeRepeating
 		ball.magnusCoefficient = 0;
 		InvokeRepeating("IncreaseLaunchSpeed", 0.5f, Time.fixedDeltaTime);
 	}
@@ -25,10 +53,8 @@ public class Kick : MonoBehaviour
 	void OnMouseUp()
 	{
 		CancelInvoke();
-		Magnus newBall = Instantiate(ball) as Magnus;
+		Magnus newBall = Instantiate(ball, transform.position, Quaternion.identity) as Magnus;
 		newBall.transform.parent = GameObject.Find("Launched Balls").transform;
-		//Vector3 launchVelocity = new Vector3(1, 1, 0).normalized * ball.magnusCoefficient;
-		//newBall.velocityVector = launchVelocity;
 		Rigidbody rb = newBall.GetComponent<Rigidbody>();
 		if(rb != null)
         {
